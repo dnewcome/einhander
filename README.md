@@ -31,7 +31,7 @@ pcb/    RP2040 USB-MIDI controller board
 - **4-layer**: signals on outer layers, dedicated **GND + 3V3 inner planes**
 - **DRC-clean**, ~91 × 68 mm
 
-![Routed 4-layer PCB](pcb/renders/0003-routed-clean.png)
+![Routed 4-layer PCB](pcb/renders/0004-routed-clean-planes.png)
 
 ![Populated board (PCBA) with Cherry MX switches](pcb/renders/einhander-pcba-preview.png)
 

@@ -14,3 +14,8 @@ __pycache__/
 # os / misc
 .DS_Store
 *.log
+
+# KiCad lock / autosave
+*.lck
+~*.lck
+_autosave-*

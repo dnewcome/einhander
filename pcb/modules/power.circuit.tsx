@@ -11,7 +11,7 @@ export const PowerBlock = ({ ox = 0, oy = 0 }: { ox?: number; oy?: number }) => 
   return (
     <>
       <TYPE_C_31_M_12 name="J1" pcbX={X(0)} pcbY={Y(0)} pcbRotation={0} />
-      <AP2112K_3_3TRG1 name="U3" pcbX={X(28)} pcbY={Y(0)} />
+      <AP2112K_3_3TRG1 name="U3" pcbX={X(16)} pcbY={Y(0)} />
 
       {/* VBUS / GND / shield */}
       <trace from="J1.B4A9" to="net.VBUS" />
@@ -37,10 +37,10 @@ export const PowerBlock = ({ ox = 0, oy = 0 }: { ox?: number; oy?: number }) => 
       <trace from="U3.EN" to="net.VBUS" />
       <trace from="U3.GND" to="net.GND" />
       <trace from="U3.VOUT" to="net.V3V3" />
-      <capacitor name="C_IN" capacitance="1uF" footprint="0805" pcbX={X(24)} pcbY={Y(1)} />
+      <capacitor name="C_IN" capacitance="1uF" footprint="0805" pcbX={X(8)} pcbY={Y(0)} />
       <trace from="C_IN.pin1" to="net.VBUS" />
       <trace from="C_IN.pin2" to="net.GND" />
-      <capacitor name="C_OUT" capacitance="1uF" footprint="0805" pcbX={X(33)} pcbY={Y(0)} />
+      <capacitor name="C_OUT" capacitance="1uF" footprint="0805" pcbX={X(24)} pcbY={Y(0)} />
       <trace from="C_OUT.pin1" to="net.V3V3" />
       <trace from="C_OUT.pin2" to="net.GND" />
     </>

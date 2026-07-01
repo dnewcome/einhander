@@ -43,10 +43,10 @@ export default () => (
     <trace from="C_LED.pin2" to="net.GND" />
 
     {/* boot/reset buttons on the free front edge (accessible, out of the back band) */}
-    <pushbutton name="SW_BOOT" footprint="pushbutton" pcbX={-6} pcbY={27} />
+    <pushbutton name="SW_BOOT" footprint="pushbutton" pcbX={36} pcbY={-17} />
     <trace from="SW_BOOT.pin1" to="net.BOOT_BTN" />
     <trace from="SW_BOOT.pin2" to="net.GND" />
-    <pushbutton name="SW_RST" footprint="pushbutton" pcbX={6} pcbY={27} />
+    <pushbutton name="SW_RST" footprint="pushbutton" pcbX={36} pcbY={-27} />
     <trace from="SW_RST.pin1" to="net.RUN" />
     <trace from="SW_RST.pin2" to="net.GND" />
 
