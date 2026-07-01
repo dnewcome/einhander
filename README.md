@@ -20,7 +20,7 @@ pcb/    RP2040 USB-MIDI controller board
           lib/, imports/           shared params, custom Cherry-MX footprint, JLC parts
           scripts/                 route4.sh + the 4-layer routing toolchain
           index.circuit.kicad_pcb  routed 4-layer board
-          fab/                     Gerbers + drill + CPL  (einhander-jlcpcb.zip → upload to JLCPCB)
+          fab/                     Gerbers + drill + CPL  (einhander-gerbers.zip → upload to JLCPCB)
 ```
 
 ## The board
@@ -35,8 +35,10 @@ pcb/    RP2040 USB-MIDI controller board
 
 ### Fabricating it
 
-Upload `pcb/fab/einhander-jlcpcb.zip` to [JLCPCB](https://jlcpcb.com) (4-layer). BOM/placement:
-`pcb/fab/einhander-cpl.csv`. MX switches / EC11 are hand-soldered (not JLC-assembled).
+Upload `pcb/fab/einhander-gerbers.zip` to [JLCPCB](https://jlcpcb.com) (select **4 layers**). For
+assembly, add `pcb/fab/einhander-bom.csv` (27 SMD parts, LCSC-mapped) + `pcb/fab/einhander-cpl.csv`
+(placement). MX switches, the EC11 thumbwheel, headers, and BOOT/RESET tactiles are **hand-soldered**
+(flagged in the BOM). Regenerate the whole bundle with `bash pcb/scripts/make_fab.sh pcb/index.circuit.kicad_pcb einhander`.
 
 ### Regenerating
 
