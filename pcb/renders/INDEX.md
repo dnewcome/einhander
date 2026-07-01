@@ -1,0 +1,3 @@
+- 0001-placement.png — 2026-06-30 — first valid placement (RP2040 USB-MIDI controller)
+- 0002-routed-4layer.png — 2026-06-30 — 4-layer routed (v2.2.4): 256 wires, inner GND/V3V3 planes
+- 0003-routed-clean.png — 2026-06-30 — CLEAN DRC (0 shorts/unconn), 4-layer

@@ -1,0 +1,16 @@
+# dependencies
+node_modules/
+dist/
+
+# regenerable build artifacts (STLs, renders, routing intermediates: dsn/ses/logs)
+build/
+__pycache__/
+*.pyc
+
+# vendored skills installed by `tsci init` / `add` (not project source)
+.claude/
+.agents/
+
+# os / misc
+.DS_Store
+*.log
