@@ -33,6 +33,8 @@ pcb/    RP2040 USB-MIDI controller board
 
 ![Routed 4-layer PCB](pcb/renders/0003-routed-clean.png)
 
+Interactive 3D model of the populated board: **`pcb/renders/einhander-pcba.glb`** (open in any glTF viewer — Blender, VS Code glTF, or https://gltf-viewer.donmccurdy.com).
+
 ### Fabricating it
 
 Upload `pcb/fab/einhander-gerbers.zip` to [JLCPCB](https://jlcpcb.com) (select **4 layers**). For
