@@ -7,6 +7,8 @@ the side for the thumb, so the other hand stays free for sliders/faders.
 This repo holds the **code-driven** design: a parametric enclosure (build123d) and a
 fabbable PCB (tscircuit → KiCad).
 
+![einhander enclosure — isometric render](cad/renders/einhander/0001-first-form-iso.png)
+
 ## What's here
 
 ```
@@ -28,6 +30,8 @@ pcb/    RP2040 USB-MIDI controller board
   left-wall daughterboard; one WS2812 status LED; BOOTSEL/RESET
 - **4-layer**: signals on outer layers, dedicated **GND + 3V3 inner planes**
 - **DRC-clean**, ~91 × 68 mm
+
+![Routed 4-layer PCB](pcb/renders/0003-routed-clean.png)
 
 ### Fabricating it
 
