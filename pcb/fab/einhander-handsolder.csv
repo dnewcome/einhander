@@ -1,0 +1,5 @@
+Comment,Designator,Footprint,Note
+J_THUMB,J_THUMB,pin_header_pinrow5,pin header — hand solder
+?,"SW1,SW2,SW3,SW4,SW5,SW6,SW7,SW8",chip,Cherry MX / Kailh keyswitch — hand solder
+SW_BOOT,SW_BOOT,push_button_pushbutton,tactile switch — hand solder or verify footprint
+SW_RST,SW_RST,push_button_pushbutton,tactile switch — hand solder or verify footprint

@@ -1,20 +1,16 @@
-Comment,Designator,Footprint,LCSC Part #,Note
-100nF,"C1,C10,C14,C15,C2,C3,C4,C5,C6,C7",capacitor_0402,C1525,
-10uF,C11,capacitor_0805,C15850,
-15pF,"C12,C13",capacitor_0402,C1548,
-1uF,C9,capacitor_0402,C52923,
-100nF,C_LED,capacitor_0805,C49678,
-1uF,"C_IN,C_OUT",capacitor_0805,C28323,
-WS2812B_B_T,D1,WS2812B_B_T,C2761795,
-TYPE_C_31_M_12,J1,TYPE_C_31_M_12,C165948,
-10kΩ,R_RUN,resistor_res0402,C25744,
-1kΩ,R_BOOT,resistor_res0402,C11702,
-5.1kΩ,"R_CC1,R_CC2",resistor_res0402,C25905,
-RP2040,U1,RP2040,C2040,
-W25Q16JVSSIQ,U2,W25Q16JVSSIQ,C131025,
-AP2112K_3_3TRG1,U3,AP2112K_3_3TRG1,C51118,
-X322512MSB4SI,Y1,X322512MSB4SI,C9002,
-J_THUMB,J_THUMB,pin_header_pinrow5,,pin header — hand solder
-(no value),"SW1,SW2,SW3,SW4,SW5,SW6,SW7,SW8",chip,,Cherry MX / Kailh keyswitch — hand solder
-SW_BOOT,SW_BOOT,push_button_pushbutton,,tactile switch — hand solder or verify footprint
-SW_RST,SW_RST,push_button_pushbutton,,tactile switch — hand solder or verify footprint
+Comment,Designator,Footprint,JLCPCB Part #
+100nF,"C1,C10,C14,C15,C2,C3,C4,C5,C6,C7",capacitor_0402,C1525
+10uF,C11,capacitor_0805,C15850
+15pF,"C12,C13",capacitor_0402,C1548
+1uF,C9,capacitor_0402,C52923
+100nF,C_LED,capacitor_0805,C49678
+1uF,"C_IN,C_OUT",capacitor_0805,C28323
+WS2812B_B_T,D1,WS2812B_B_T,C2761795
+TYPE_C_31_M_12,J1,TYPE_C_31_M_12,C165948
+10k,R_RUN,resistor_res0402,C25744
+1k,R_BOOT,resistor_res0402,C11702
+5.1k,"R_CC1,R_CC2",resistor_res0402,C25905
+RP2040,U1,RP2040,C2040
+W25Q16JVSSIQ,U2,W25Q16JVSSIQ,C131025
+AP2112K_3_3TRG1,U3,AP2112K_3_3TRG1,C51118
+X322512MSB4SI,Y1,X322512MSB4SI,C9002

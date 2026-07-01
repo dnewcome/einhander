@@ -85,19 +85,35 @@ def main():
         (val, fp, lcsc), g = item
         return (0 if lcsc else 1, g["refs"][0][:2], val)
 
+    def refs_of(g):
+        return ",".join(sorted(g["refs"], key=lambda r: (r[:2], r)))
+
     out = a.out or os.path.join("fab", os.path.splitext(os.path.basename(a.board))[0] + "-bom.csv")
     os.makedirs(os.path.dirname(out) or ".", exist_ok=True)
+
+    # JLCPCB PCBA BOM — assembled parts ONLY, ASCII, exact JLC columns, no blank part#/extra cols.
+    # (blank-LCSC rows, extra columns, or Ω/µ make JLC's uploader throw "error processing BOM".)
+    asm = sorted([kv for kv in groups.items() if kv[0][2]], key=sortkey)
+    hand = sorted([kv for kv in groups.items() if not kv[0][2]], key=sortkey)
+    n_asm = n_hand = 0
     with open(out, "w", newline="") as fh:
         w = csv.writer(fh)
-        w.writerow(["Comment", "Designator", "Footprint", "LCSC Part #", "Note"])
-        n_asm = n_hand = 0
-        for (val, fp, lcsc), g in sorted(groups.items(), key=sortkey):
-            refs = ",".join(sorted(g["refs"], key=lambda r: (r[:2], r)))
-            pkg = fp.split(":")[-1]
-            w.writerow([val or "(no value)", refs, pkg, lcsc, g["note"]])
-            n_asm += len(g["refs"]) if lcsc else 0
-            n_hand += len(g["refs"]) if not lcsc else 0
-    print(f"wrote {out}: {len(groups)} lines | {n_asm} assembled parts, {n_hand} hand-solder/DNP")
+        w.writerow(["Comment", "Designator", "Footprint", "JLCPCB Part #"])
+        for (val, fp, lcsc), g in asm:
+            w.writerow([norm(val) or "?", refs_of(g), fp.split(":")[-1], lcsc])
+            n_asm += len(g["refs"])
+
+    # hand-soldered / mechanical parts kept in a SEPARATE reference list (not for JLC assembly)
+    hs = os.path.splitext(out)[0].rsplit("-bom", 1)[0] + "-handsolder.csv"
+    with open(hs, "w", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(["Comment", "Designator", "Footprint", "Note"])
+        for (val, fp, _l), g in hand:
+            w.writerow([norm(val) or "?", refs_of(g), fp.split(":")[-1], g["note"]])
+            n_hand += len(g["refs"])
+
+    print(f"wrote {out} ({len(asm)} lines, {n_asm} assembled parts) "
+          f"+ {hs} ({n_hand} hand-solder parts)")
 
 
 if __name__ == "__main__":

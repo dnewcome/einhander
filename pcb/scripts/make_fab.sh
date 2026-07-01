@@ -23,8 +23,22 @@ echo "[1/5] Gerbers (all layers + gerber-job)"
 kicad-cli pcb export gerbers -o "$FAB/" "$B" >/dev/null
 echo "[2/5] Excellon drill"
 kicad-cli pcb export drill -o "$FAB/" "$B" >/dev/null
-echo "[3/5] CPL / placement (Designator, Mid X/Y, Layer, Rotation)"
-kicad-cli pcb export pos --format csv --units mm --side both -o "$FAB/${NAME}-cpl.csv" "$B" >/dev/null
+echo "[3/5] CPL / placement -> JLCPCB columns (Designator, Mid X/Y, Layer, Rotation)"
+kicad-cli pcb export pos --format csv --units mm --side both -o "$FAB/${NAME}-cpl-raw.csv" "$B" >/dev/null
+python3 - "$FAB/${NAME}-cpl-raw.csv" "$FAB/${NAME}-cpl.csv" <<'PYEOF'
+import csv, sys
+rows = list(csv.DictReader(open(sys.argv[1])))
+with open(sys.argv[2], "w", newline="") as f:
+    w = csv.writer(f)
+    w.writerow(["Designator", "Mid X", "Mid Y", "Layer", "Rotation"])   # JLCPCB CPL header
+    for r in rows:
+        ref = (r.get("Ref") or "").strip()
+        if not ref:                                   # drop mounting-holes / no-designator rows
+            continue
+        side = (r.get("Side") or "top").strip().capitalize()   # Top / Bottom
+        w.writerow([ref, r.get("PosX", ""), r.get("PosY", ""), side, r.get("Rot", "")])
+PYEOF
+rm -f "$FAB/${NAME}-cpl-raw.csv"
 echo "[4/5] BOM (LCSC-mapped)"
 python3 "$SELF/gen_bom.py" "$B" -o "$FAB/${NAME}-bom.csv"
 echo "[5/5] Zip Gerbers + drill -> ${NAME}-gerbers.zip"
