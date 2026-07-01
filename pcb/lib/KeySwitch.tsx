@@ -26,6 +26,15 @@ export const KeySwitch = ({ name, ...props }: Props) => (
         ]} />
       </footprint>
     }
+    // Cherry MX 3D model (EasyEDA C3316924) — visual only; our footprint's origin is at
+    // the switch center, so no Y shift is needed (the imported part offsets Y by ~3mm
+    // because its footprint origin sits above the switch center).
+    cadModel={{
+      objUrl: "https://modelcdn.tscircuit.com/easyeda_models/assets/C3316924.obj?uuid=82a0b1b0736d4246abdfab1c08b9c459",
+      stepUrl: "https://modelcdn.tscircuit.com/easyeda_models/assets/C3316924.step?uuid=82a0b1b0736d4246abdfab1c08b9c459",
+      pcbRotationOffset: 0,
+      modelOriginPosition: { x: 0, y: 0, z: 0 },
+    }}
     {...props}
   />
 )
