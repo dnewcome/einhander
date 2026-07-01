@@ -38,7 +38,10 @@ pcb/    RP2040 USB-MIDI controller board
 Upload `pcb/fab/einhander-gerbers.zip` to [JLCPCB](https://jlcpcb.com) (select **4 layers**). For
 assembly, add `pcb/fab/einhander-bom.csv` (27 SMD parts, LCSC-mapped) + `pcb/fab/einhander-cpl.csv`
 (placement). MX switches, the EC11 thumbwheel, headers, and BOOT/RESET tactiles are **hand-soldered**
-(listed separately in `einhander-handsolder.csv`, kept out of the JLC assembly BOM). Regenerate the whole bundle with `bash pcb/scripts/make_fab.sh pcb/index.circuit.kicad_pcb einhander`.
+(listed separately in `einhander-handsolder.csv`, kept out of the assembly BOM).
+
+**PCBWay** uses the same `einhander-gerbers.zip` + `einhander-cpl.csv`, with `einhander-bom-pcbway.csv`
+(sources by manufacturer part number instead of LCSC). `make_fab.sh` emits both BOM formats. Regenerate the whole bundle with `bash pcb/scripts/make_fab.sh pcb/index.circuit.kicad_pcb einhander`.
 
 ### Regenerating
 

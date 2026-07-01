@@ -39,8 +39,10 @@ with open(sys.argv[2], "w", newline="") as f:
         w.writerow([ref, r.get("PosX", ""), r.get("PosY", ""), side, r.get("Rot", "")])
 PYEOF
 rm -f "$FAB/${NAME}-cpl-raw.csv"
-echo "[4/5] BOM (LCSC-mapped)"
-python3 "$SELF/gen_bom.py" "$B" -o "$FAB/${NAME}-bom.csv"
+FAB_TGT="${3:-both}"    # jlcpcb | pcbway | both  (Gerbers + CPL are shared across fabs)
+echo "[4/5] BOM(s): $FAB_TGT"
+case "$FAB_TGT" in jlcpcb|both) python3 "$SELF/gen_bom.py" "$B" --fab jlcpcb -o "$FAB/${NAME}-bom.csv" ;; esac
+case "$FAB_TGT" in pcbway|both) python3 "$SELF/gen_bom.py" "$B" --fab pcbway -o "$FAB/${NAME}-bom-pcbway.csv" ;; esac
 echo "[5/5] Zip Gerbers + drill -> ${NAME}-gerbers.zip"
 cd "$FAB"
 rm -f "${NAME}-gerbers.zip"
@@ -51,6 +53,8 @@ for ext in gtl gbl g1 g2 g3 g4 gts gbs gto gbo gtp gbp gm1 gbrjob drl; do
 done
 # shellcheck disable=SC2086
 zip -jq "${NAME}-gerbers.zip" $FILES
-echo "DONE -> $FAB/"
-echo "  upload to JLCPCB:  ${NAME}-gerbers.zip  (PCB)  +  ${NAME}-bom.csv  ${NAME}-cpl.csv  (assembly)"
+echo "DONE -> $FAB/  (Gerbers + CPL are shared across fabs)"
+echo "  JLCPCB:  ${NAME}-gerbers.zip (PCB) + ${NAME}-bom.csv + ${NAME}-cpl.csv"
+echo "  PCBWay:  ${NAME}-gerbers.zip (PCB) + ${NAME}-bom-pcbway.csv + ${NAME}-cpl.csv"
+echo "  hand-solder (both): ${NAME}-handsolder.csv"
 unzip -l "${NAME}-gerbers.zip" | tail -1
