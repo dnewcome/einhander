@@ -19,6 +19,10 @@ NAME="${2:-$STEM}"
 FAB="$DIR/fab"; mkdir -p "$FAB"
 cd "$DIR"
 
+echo "[0/5] DFM gate (fab minimums KiCad DRC misses: hole spacing, via drill/annular)"
+set +e; python3 "$SELF/dfm_check.py" "$B" 2>&1 | sed 's/^/      /'; DFM_RC=${PIPESTATUS[0]}; set -e
+[ "$DFM_RC" -ne 0 ] && echo "      ⚠ DFM found ACTIONABLE issues above — bundling anyway, but fix before ordering." >&2 || true
+
 echo "[1/5] Gerbers (all layers + gerber-job)"
 kicad-cli pcb export gerbers -o "$FAB/" "$B" >/dev/null
 echo "[2/5] Excellon drill"
